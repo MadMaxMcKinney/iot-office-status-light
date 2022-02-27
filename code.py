@@ -1,3 +1,6 @@
+# Author: Max McKinney
+# Description: A simple 'busy light' for displaying your meeting status to those outside your home office.
+
 import time
 import random
 import board
@@ -66,7 +69,7 @@ def update_text():
     status_label.y = display.height // 2
 
 def fetch_updates():
-    print("Fetching status...")
+    # print("Fetching status...")
 
     # Returns a JSON object as a python dict object from the selected AdafruitIO feed
     meetingFeed = matrixportal.get_io_feed("meeting-status.inmeeting")
@@ -95,9 +98,8 @@ def str_to_bool(s):
     else:
          raise ValueError # evil ValueError that doesn't tell you what the wrong value was
 
-# --- Initial display ---
+# --- Add contents to the display ---
 display.show(contentGroup)
-update_screen()
 
 # --- Loop ---
 while True:
@@ -116,4 +118,4 @@ while True:
     except Exception as ex:
         template = "An exception of type {0} occurred. Arguments:\n{1!r}"
         message = template.format(type(ex).__name__, ex.args)
-        print(message)
+        # print(message)
